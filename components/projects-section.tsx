@@ -111,10 +111,23 @@ function ProjectCard({ project }: { project: Project }) {
           </div>
 
           {/* Title and Description */}
-          <div className="mb-4 flex-grow">
-            <h3 className="text-xl font-bold text-foreground mb-3 group-hover:text-codiva-blue transition-colors">
-              {project.title}
-            </h3>
+          <div className="mb-4">
+            {project.demoUrl ? (
+              <a
+                href={project.demoUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block"
+              >
+                <h3 className="text-xl font-bold text-foreground mb-3 group-hover:text-codiva-blue transition-colors cursor-pointer hover:text-codiva-blue">
+                  {project.title}
+                </h3>
+              </a>
+            ) : (
+              <h3 className="text-xl font-bold text-foreground mb-3 group-hover:text-codiva-blue transition-colors">
+                {project.title}
+              </h3>
+            )}
             <p className="text-muted-foreground text-sm leading-relaxed">
               {project.description}
             </p>
@@ -137,16 +150,32 @@ function ProjectCard({ project }: { project: Project }) {
           </div>
 
           {/* Action Buttons */}
-          <div className="flex gap-3 mt-auto">
+          <div className="flex gap-3 mt-auto pt-4 border-t border-border/50">
+            {/* Test button - always visible */}
+            <Button
+              size="sm"
+              className="flex-1 bg-red-500 hover:bg-red-600 text-white font-semibold"
+            >
+              TEST BUTTON
+            </Button>
+            
             {project.demoUrl && (
               <Button
                 size="sm"
-                onClick={() => handleLinkClick(project.demoUrl!, 'demo')}
-                className="flex-1 bg-codiva-blue hover:bg-codiva-blue/90 text-white"
+                onClick={() => {
+                  console.log('Opening project URL:', project.demoUrl);
+                  handleLinkClick(project.demoUrl!, 'project');
+                }}
+                className="flex-1 bg-gradient-to-r from-codiva-blue to-codiva-purple hover:from-codiva-blue/90 hover:to-codiva-purple/90 text-white font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
               >
                 <ExternalLink className="h-4 w-4 mr-2" />
-                Live Demo
+                View Project
               </Button>
+            )}
+            {!project.demoUrl && (
+              <div className="text-xs text-muted-foreground text-center w-full py-2">
+                Project link coming soon
+              </div>
             )}
             {project.githubUrl && (
               <Button
@@ -175,6 +204,15 @@ export function ProjectsSection() {
     completed: completedProjects.length,
     ongoing: ongoingProjects.length
   });
+
+  // Debug: Log completed projects and their demo URLs
+  console.log('Completed projects with demo URLs:', 
+    completedProjects.map(p => ({
+      title: p.title,
+      demoUrl: p.demoUrl,
+      hasDemoUrl: !!p.demoUrl
+    }))
+  );
 
   return (
     <section id="projects" className="section-padding">

@@ -173,7 +173,7 @@ export function ContactSection() {
                     className="p-0 h-auto text-codiva-blue hover:text-codiva-blue/80"
                     onClick={() => window.open('mailto:hello@codiva.tech', '_blank')}
                   >
-                    hello@codiva.tech
+                    itscodivalabs@gmail.com
                   </Button>
                 </div>
                 

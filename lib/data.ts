@@ -117,7 +117,7 @@ export const projects: Project[] = [
     techStack: ['Next.js', 'Tailwind CSS', 'Framer Motion', 'TypeScript', 'Vercel'],
     status: 'completed',
     category: 'Frontend Project',
-    image: 'https://images.unsplash.com/photo-1503264116251-35a269479413?w=600&h=400&fit=crop',
+    image: '/landing_page_image.jpg',
     demoUrl: 'https://theadsarchitect.netlify.app/',
     featured: true
   },
@@ -129,7 +129,7 @@ export const projects: Project[] = [
     techStack: ['NodeJS', 'Tailwind CSS', 'Stripe/Razor', 'MongoDb Atlas', 'ReactJS', 'Whereby API'],
     status: 'completed',
     category: 'Web Application',
-    image: 'https://images.unsplash.com/photo-1592842069644-e02db4921c98?w=600&h=400&fit=crop',
+    image: '/kaivalya_homepage.png',
     demoUrl: 'https://kushal-15gt.onrender.com',
     featured: true
   },
@@ -141,7 +141,7 @@ export const projects: Project[] = [
     techStack: ['React', 'Tailwind CSS', 'Python', 'FastAPI', 'MongoDB Atlas'],
     status: 'ongoing',
     category: 'Trading Platform',
-    image: 'https://images.unsplash.com/photo-1581093588401-12c643162f72?w=600&h=400&fit=crop',
+    image: '/logo.jpg',
     featured: true
   },
   
@@ -152,9 +152,21 @@ export const projects: Project[] = [
     techStack: ['React', 'Node.js', 'MongoDB Atlas', 'Express', 'Stripe/Razorpay'],
     status: 'planned',
     category: 'Web Application',
-    image: 'https://images.unsplash.com/photo-1616627984512-b1b42d46294d?w=600&h=400&fit=crop',
+    image: '/logo.jpg',
+    featured: false
+  },
+  {
+    id: 'rudraksh-essence-platform',
+    title: 'Rudraksh Essence – Rudraksha-Centric Learning & E-Commerce Platform',
+    description: 'An evolving platform dedicated to spreading authentic knowledge about Rudraksha through interactive blogs, spiritual quizzes, and curated product offerings. The project combines learning, discovery, and commerce to help users explore the essence of Rudraksha deeply.',
+    techStack: ['NextJS', 'Tailwind CSS', 'MongoDb Atlas', 'Stripe', 'React Query'],
+    status: 'ongoing',
+    category: 'Web Application',
+    image: '/logo.jpg',
+    demoUrl: 'https://rudraksh-essence-dev.onrender.com',
     featured: false
   }
+  
   
 ];
 
