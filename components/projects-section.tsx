@@ -68,7 +68,7 @@ function ProjectCard({ project }: { project: Project }) {
       whileHover={{ y: -5 }}
       className="h-full"
     >
-      <Card className="glass-card hover:shadow-xl transition-all duration-300 h-full border-0 overflow-hidden group">
+      <Card className="glass-card hover:shadow-xl transition-all duration-300 h-full border border-border/50 overflow-hidden group">
         {/* Project Image */}
         {project.image && (
           <div className="relative overflow-hidden h-48">

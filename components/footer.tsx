@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
 import { Heart, Github, Linkedin, Mail, ArrowUp, Instagram, Facebook, Twitter } from 'lucide-react';
+import { useToast } from '@/hooks/use-toast';
 
 const quickLinks = [
   { name: 'Home', href: '#hero' },
@@ -13,13 +14,15 @@ const quickLinks = [
 ];
 
 const socialLinks = [
-  { name: 'Instagram', href: 'https://www.instagram.com/codiva_labs/', icon: Instagram },
-  { name: 'Facebook', href: 'https://facebook.com/codiva.tech', icon: Facebook },
-  { name: 'Twitter', href: 'https://twitter.com/codiva_tech', icon: Twitter },
-  { name: 'LinkedIn', href: 'https://linkedin.com/company/codiva', icon: Linkedin },
+  { name: 'Instagram', href: 'https://www.instagram.com/codiva_labs/', icon: Instagram, enabled: true },
+  { name: 'Facebook', href: 'https://facebook.com/codiva.tech', icon: Facebook, enabled: false },
+  { name: 'Twitter', href: 'https://twitter.com/codiva_tech', icon: Twitter, enabled: false },
+  { name: 'LinkedIn', href: 'https://linkedin.com/company/codiva', icon: Linkedin, enabled: false },
 ];
 
 export function Footer() {
+  const { toast } = useToast();
+  
   const handleNavClick = (href: string) => {
     console.log('Footer navigation to:', href);
     if (href.startsWith('#')) {
@@ -29,6 +32,18 @@ export function Footer() {
       }
     } else {
       window.open(href, '_blank', 'noopener,noreferrer');
+    }
+  };
+
+  const handleSocialClick = (social: any) => {
+    if (social.enabled) {
+      handleNavClick(social.href);
+    } else {
+      toast({
+        title: 'Yet to open',
+        description: `${social.name} is not available yet.`,
+        variant: 'default',
+      });
     }
   };
 
@@ -103,11 +118,12 @@ export function Footer() {
                     return (
                       <motion.button
                         key={social.name}
-                        onClick={() => handleNavClick(social.href)}
-                        className="flex items-center gap-3 text-muted-foreground hover:text-codiva-blue transition-colors duration-200 group"
-                        whileHover={{ x: 4 }}
+                        onClick={() => handleSocialClick(social)}
+                        className={`flex items-center gap-3 transition-colors duration-200 group ${social.enabled ? 'text-muted-foreground hover:text-codiva-blue' : 'text-muted-foreground/50 cursor-not-allowed'}`}
+                        whileHover={social.enabled ? { x: 4 } : {}}
+                        disabled={!social.enabled}
                       >
-                        <Icon className="h-4 w-4 group-hover:scale-110 transition-transform" />
+                        <Icon className={`h-4 w-4 transition-transform ${social.enabled ? 'group-hover:scale-110' : ''}`} />
                         <span>{social.name}</span>
                       </motion.button>
                     );
