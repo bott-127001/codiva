@@ -117,7 +117,7 @@ export const projects: Project[] = [
     techStack: ['Next.js', 'Tailwind CSS', 'Framer Motion', 'TypeScript', 'Vercel'],
     status: 'completed',
     category: 'Frontend Project',
-    image: '/landing_page_image.jpg',
+    image: '/IMG-20250801-WA0016.jpg',
     demoUrl: 'https://theadsarchitect.netlify.app/',
     featured: true
   },
