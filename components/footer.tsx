@@ -174,7 +174,7 @@ export function Footer() {
           <div className="flex items-center gap-6 text-sm text-muted-foreground">
             <span>Built with Next.js & Tailwind CSS</span>
             <span className="hidden sm:inline">•</span>
-            <span>Deployed on Vercel</span>
+            <span>Deployed on Netlify</span>
           </div>
         </motion.div>
       </div>
