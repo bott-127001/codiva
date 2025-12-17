@@ -29,7 +29,7 @@ export interface Project {
 export const teamMembers: TeamMember[] = [
   {
     id: 'you',
-    name: 'Mr. Samarth Salgar',
+    name: 'Samarth Salgar',
     role: 'Full-Stack Developer (Backend)',
     bio: 'Passionate full-stack developer with a strong focus on backend systems. Leading backend architecture and API design at Codiva, while also contributing across the full stack.',
     skills: ['React', 'Node.js', 'TypeScript', 'Next.js', 'MongoDB', 'python'],
@@ -49,7 +49,7 @@ export const teamMembers: TeamMember[] = [
   },
   {
     id: 'prajwal',
-    name: 'Mr. Prajwal Nangare',
+    name: 'Prajwal Nangare',
     role: 'Full-Stack Developer (Frontend)',
     bio: 'Expert full-stack developer specializing in modern frontend frameworks and intuitive user experiences, with strong backend proficiency. Co-founding Codiva with a vision for sleek, performant, and innovative web solutions.',
     skills: ['Python', 'React', 'VueJS', 'Figma', 'NodeJS', 'TailwindCSS', 'MongoDB'],
@@ -69,7 +69,7 @@ export const teamMembers: TeamMember[] = [
   },
   {
     id: 'marketer',
-    name: 'Mr. Om Laygude',
+    name: 'Om Laygude',
     role: 'Digital Marketing Specialist(SEO & Marketing)',
     bio: 'Strategic digital marketing expert driving growth through SEO, content marketing, and data-driven campaigns. Building brand presence.',
     skills: ['SEO', 'Content Marketing', 'Google Analytics', 'Social Media Management', 'PPC', 'Email Marketing', 'Ads campaign'],
@@ -89,7 +89,7 @@ export const teamMembers: TeamMember[] = [
   },
   {
     id: 'manager',
-    name: 'Mr. Akshat Pande',
+    name: 'Akshat Pande',
     role: 'Technical Manager & Lead',
     bio: 'Experienced technical leader overseeing project delivery and team coordination. Ensuring quality and timely delivery of all Codiva projects.',
     skills: ['Project Management', 'Agile', 'Team Leadership', 'Architecture Design', 'Quality Assurance'],
@@ -117,20 +117,20 @@ export const projects: Project[] = [
     techStack: ['Next.js', 'Tailwind CSS', 'Framer Motion', 'TypeScript', 'Vercel'],
     status: 'completed',
     category: 'Frontend Project',
-    image: '/landing_page_image.jpg',
+    image: '/IMG-20250801-WA0016.jpg',
     demoUrl: 'https://theadsarchitect.netlify.app/',
     featured: true
   },
 
   {
-    id: 'astro-commerce-platform',
-    title: 'Kaivalya Astrology – Astrological consultation & Gemstone E-Commerce Platform',
-    description: 'A full-stack e-commerce platform built for astrology services, gemstone sales, and consultation bookings. It includes secure payment integration, product recommendation based on birth details, and admin dashboards for order and appointment management.',
-    techStack: ['NodeJS', 'Tailwind CSS', 'Stripe/Razor', 'MongoDb Atlas', 'ReactJS', 'Whereby API'],
+    id: 'artista-salon-academy',
+    title: 'Artista – Luxury Salon & House of Beauty',
+    description: 'A performance-optimized web platform for a premium salon and academy, designed to streamline client bookings and course enrollments. Features include a dynamic service catalog, integrated WhatsApp communication for customers, and a lightweight Excel for seamless data management.',
+    techStack: ['Next.js', 'Tailwind CSS', 'Excel', 'ReactJS'],
     status: 'completed',
     category: 'Web Application',
-    image: '/kaivalya_homepage.png',
-    demoUrl: 'https://kushal-15gt.onrender.com',
+    image: '/artista.png',
+    demoUrl: 'https://artistabysupriya.com/',
     featured: true
   },
   
