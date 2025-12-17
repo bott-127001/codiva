@@ -123,14 +123,14 @@ export const projects: Project[] = [
   },
 
   {
-    id: 'astro-commerce-platform',
-    title: 'Kaivalya Astrology – Astrological consultation & Gemstone E-Commerce Platform',
-    description: 'A full-stack e-commerce platform built for astrology services, gemstone sales, and consultation bookings. It includes secure payment integration, product recommendation based on birth details, and admin dashboards for order and appointment management.',
-    techStack: ['NodeJS', 'Tailwind CSS', 'Stripe/Razor', 'MongoDb Atlas', 'ReactJS', 'Whereby API'],
+    id: 'artista-salon-academy',
+    title: Artista – Luxury Salon & House of Beauty',
+    description: 'A performance-optimized web platform for a premium salon and academy, designed to streamline client bookings and course enrollments. Features include a dynamic service catalog, integrated WhatsApp communication for customers, and a lightweight Excel for seamless data management.',
+    techStack: ['Next.js', 'Tailwind CSS', 'Excel', 'ReactJS'],
     status: 'completed',
     category: 'Web Application',
-    image: '/kaivalya_homepage.png',
-    demoUrl: 'https://kushal-15gt.onrender.com',
+    image: '/artista.png',
+    demoUrl: 'https://artistabysupriya.com/',
     featured: true
   },
   
