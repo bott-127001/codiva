@@ -124,7 +124,7 @@ export const projects: Project[] = [
 
   {
     id: 'artista-salon-academy',
-    title: Artista – Luxury Salon & House of Beauty',
+    title: 'Artista – Luxury Salon & House of Beauty',
     description: 'A performance-optimized web platform for a premium salon and academy, designed to streamline client bookings and course enrollments. Features include a dynamic service catalog, integrated WhatsApp communication for customers, and a lightweight Excel for seamless data management.',
     techStack: ['Next.js', 'Tailwind CSS', 'Excel', 'ReactJS'],
     status: 'completed',
