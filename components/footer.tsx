@@ -115,18 +115,29 @@ export function Footer() {
                 <div className="space-y-3">
                   {socialLinks.map((social) => {
                     const Icon = social.icon;
-                    return (
-                      <motion.button
-                        key={social.name}
-                        onClick={() => handleSocialClick(social)}
-                        className={`flex items-center gap-3 transition-colors duration-200 group ${social.enabled ? 'text-muted-foreground hover:text-codiva-blue' : 'text-muted-foreground/50 cursor-not-allowed'}`}
-                        whileHover={social.enabled ? { x: 4 } : {}}
-                        disabled={!social.enabled}
-                      >
-                        <Icon className={`h-4 w-4 transition-transform ${social.enabled ? 'group-hover:scale-110' : ''}`} />
-                        <span>{social.name}</span>
-                      </motion.button>
-                    );
+                    if (social.enabled) {
+                      return (
+                        <motion.button
+                          key={social.name}
+                          onClick={() => handleSocialClick(social)}
+                          className="flex items-center gap-3 transition-colors duration-200 group text-muted-foreground hover:text-codiva-blue"
+                          whileHover={{ x: 4 }}
+                        >
+                          <Icon className="h-4 w-4 transition-transform group-hover:scale-110" />
+                          <span>{social.name}</span>
+                        </motion.button>
+                      );
+                    } else {
+                      return (
+                        <div
+                          key={social.name}
+                          className="flex items-center gap-3 text-muted-foreground/50 cursor-not-allowed select-none opacity-60 pointer-events-none"
+                        >
+                          <Icon className="h-4 w-4" />
+                          <span>{social.name}</span>
+                        </div>
+                      );
+                    }
                   })}
                 </div>
                 
