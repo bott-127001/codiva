@@ -5,12 +5,14 @@ import { Button } from '@/components/ui/button';
 import { Moon, Sun, Menu, X } from 'lucide-react';
 import { useTheme } from 'next-themes';
 import { motion, AnimatePresence } from 'framer-motion';
+import { usePathname, useRouter } from 'next/navigation';
 
 const navigationItems = [
   { name: 'Home', href: '#hero' },
   { name: 'Team', href: '#team' },
   { name: 'Projects', href: '#projects' },
   { name: 'Contact', href: '#contact' },
+  { name: 'Designs', href: '/designs' },
 ];
 
 export function Navigation() {
@@ -18,6 +20,8 @@ export function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { theme, setTheme } = useTheme();
+  const pathname = usePathname();
+  const router = useRouter();
 
   useEffect(() => {
     setMounted(true);
@@ -34,9 +38,17 @@ export function Navigation() {
     console.log('Navigating to:', href);
     setIsMobileMenuOpen(false);
     
-    const element = document.querySelector(href);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+    if (href.startsWith('#')) {
+      if (pathname === '/') {
+        const element = document.querySelector(href);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      } else {
+        router.push('/' + href);
+      }
+    } else {
+      router.push(href);
     }
   };
 

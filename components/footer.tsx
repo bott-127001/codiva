@@ -5,12 +5,14 @@ import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
 import { Heart, Github, Linkedin, Mail, ArrowUp, Instagram, Facebook, Twitter } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
+import { usePathname, useRouter } from 'next/navigation';
 
 const quickLinks = [
   { name: 'Home', href: '#hero' },
   { name: 'Team', href: '#team' },
   { name: 'Projects', href: '#projects' },
   { name: 'Contact', href: '#contact' },
+  { name: 'Designs', href: '/designs' },
 ];
 
 const socialLinks = [
@@ -22,14 +24,22 @@ const socialLinks = [
 
 export function Footer() {
   const { toast } = useToast();
+  const pathname = usePathname();
+  const router = useRouter();
   
   const handleNavClick = (href: string) => {
     console.log('Footer navigation to:', href);
     if (href.startsWith('#')) {
-      const element = document.querySelector(href);
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
+      if (pathname === '/') {
+        const element = document.querySelector(href);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      } else {
+        router.push('/' + href);
       }
+    } else if (href.startsWith('/')) {
+      router.push(href);
     } else {
       window.open(href, '_blank', 'noopener,noreferrer');
     }
