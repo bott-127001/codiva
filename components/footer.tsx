@@ -10,6 +10,7 @@ const quickLinks = [
   { name: 'Home', href: '#hero' },
   { name: 'Team', href: '#team' },
   { name: 'Projects', href: '#projects' },
+  { name: 'Designs', href: '/portfolio' },
   { name: 'Contact', href: '#contact' },
 ];
 
@@ -30,6 +31,8 @@ export function Footer() {
       if (element) {
         element.scrollIntoView({ behavior: 'smooth' });
       }
+    } else if (href.startsWith('/')) {
+      window.location.href = href;
     } else {
       window.open(href, '_blank', 'noopener,noreferrer');
     }

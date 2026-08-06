@@ -10,6 +10,7 @@ const navigationItems = [
   { name: 'Home', href: '#hero' },
   { name: 'Team', href: '#team' },
   { name: 'Projects', href: '#projects' },
+  { name: 'Designs', href: '/portfolio' },
   { name: 'Contact', href: '#contact' },
 ];
 
@@ -33,6 +34,11 @@ export function Navigation() {
   const handleNavClick = (href: string) => {
     console.log('Navigating to:', href);
     setIsMobileMenuOpen(false);
+    
+    if (href.startsWith('/')) {
+      window.location.href = href;
+      return;
+    }
     
     const element = document.querySelector(href);
     if (element) {
