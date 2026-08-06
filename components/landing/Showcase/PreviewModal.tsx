@@ -68,7 +68,7 @@ export function PreviewModal({ demo, onClose }: { demo: Demo | null; onClose: ()
               transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
               className={cn(
                 "h-full w-full overflow-hidden rounded-2xl border border-border/70 bg-surface-2 shadow-glow",
-                device === "mobile" && "aspect-[9/19] h-auto max-h-full w-auto max-w-[380px]",
+                device === "mobile" && "aspect-[9/19] h-full max-h-full w-auto max-w-[380px]",
               )}
             >
               <LivePreview

@@ -25,6 +25,8 @@ export function LivePreview({
   const [visible, setVisible] = useState(eager);
   const [loaded, setLoaded] = useState(false);
   const [stalled, setStalled] = useState(false);
+  const [containerHeight, setContainerHeight] = useState(0);
+  const [containerWidth, setContainerWidth] = useState(0);
 
   useEffect(() => {
     if (!visible || loaded) return;
@@ -36,8 +38,14 @@ export function LivePreview({
     const el = holder.current;
     if (!el) return;
 
-    const ro = new ResizeObserver(() => setScale(el.clientWidth / width));
+    const ro = new ResizeObserver(() => {
+      setContainerWidth(el.clientWidth);
+      setContainerHeight(el.clientHeight);
+      setScale(el.clientWidth / width);
+    });
     ro.observe(el);
+    setContainerWidth(el.clientWidth);
+    setContainerHeight(el.clientHeight);
     setScale(el.clientWidth / width);
 
     let io: IntersectionObserver | undefined;
@@ -70,7 +78,9 @@ export function LivePreview({
           )}
           style={{
             width: `${width}px`,
-            height: `${Math.round(width * 1.35)}px`,
+            height: containerHeight && containerWidth
+              ? `${Math.round(containerHeight * (width / containerWidth))}px`
+              : `${Math.round(width * 1.35)}px`,
             transform: `scale(${scale})`,
           }}
         />
