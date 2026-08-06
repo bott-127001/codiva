@@ -61,6 +61,12 @@ const config: Config = {
           green: '#10b981',
           gray: '#1f2937',
         },
+        // Landing page colors
+        brand: 'var(--brand)',
+        'brand-2': 'var(--brand-2)',
+        'brand-accent': 'var(--brand-accent)',
+        'surface-1': 'var(--surface-1)',
+        'surface-2': 'var(--surface-2)',
         chart: {
           '1': 'hsl(var(--chart-1))',
           '2': 'hsl(var(--chart-2))',

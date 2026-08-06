@@ -1,0 +1,94 @@
+/* ---------- Aurora backdrop keyframes and classes ---------- */
+.landing-page-theme .aurora-blob {
+  position: absolute;
+  border-radius: 999px;
+  filter: blur(90px);
+  opacity: 0.5;
+}
+.landing-page-theme .aurora-blob-1 {
+  top: -14rem;
+  left: -8rem;
+  width: 42rem;
+  height: 42rem;
+  background: radial-gradient(circle, var(--brand) 0%, transparent 68%);
+  animation: drift-a 22s ease-in-out infinite;
+}
+.landing-page-theme .aurora-blob-2 {
+  top: 18rem;
+  right: -12rem;
+  width: 38rem;
+  height: 38rem;
+  background: radial-gradient(circle, var(--brand-2) 0%, transparent 68%);
+  animation: drift-b 26s ease-in-out infinite;
+}
+.landing-page-theme .aurora-blob-3 {
+  bottom: -16rem;
+  left: 30%;
+  width: 44rem;
+  height: 44rem;
+  background: radial-gradient(circle, var(--brand-accent) 0%, transparent 70%);
+  opacity: 0.24;
+  animation: drift-a 30s ease-in-out infinite reverse;
+}
+
+@keyframes drift-a {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(6rem, 4rem, 0) scale(1.12);
+  }
+}
+@keyframes drift-b {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1.05);
+  }
+  50% {
+    transform: translate3d(-7rem, -3rem, 0) scale(0.92);
+  }
+}
+
+/* ---------- Text Shimmer Animation ---------- */
+.landing-page-theme .gradient-text-animated {
+  animation: shimmer 7s linear infinite;
+}
+@keyframes shimmer {
+  to {
+    background-position: 220% 0;
+  }
+}
+
+/* ---------- Marquee Animation ---------- */
+.landing-page-theme .marquee-track {
+  animation: marquee 32s linear infinite;
+}
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* ---------- Loader Spin Animation ---------- */
+.landing-page-theme .loader-ring {
+  height: 1.6rem;
+  width: 1.6rem;
+  border-radius: 999px;
+  border: 2px solid var(--border);
+  border-top-color: var(--brand);
+  animation: spin 0.9s linear infinite;
+}
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .landing-page-theme .marquee-track,
+  .landing-page-theme .aurora-blob,
+  .landing-page-theme .gradient-text-animated {
+    animation: none;
+  }
+}

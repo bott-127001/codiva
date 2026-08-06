@@ -117,7 +117,7 @@ export const projects: Project[] = [
     techStack: ['Next.js', 'Tailwind CSS', 'Framer Motion', 'TypeScript', 'Vercel'],
     status: 'completed',
     category: 'Frontend Project',
-    image: '/IMG-20250801-WA0016.jpg',
+    image: '/images/IMG-20250801-WA0016.jpg',
     demoUrl: 'https://theadsarchitect.netlify.app/',
     featured: true
   },
@@ -129,7 +129,7 @@ export const projects: Project[] = [
     techStack: ['Next.js', 'Tailwind CSS', 'Excel', 'ReactJS'],
     status: 'completed',
     category: 'Web Application',
-    image: '/artista.png',
+    image: '/images/artista.png',
     demoUrl: 'https://artistabysupriya.com/',
     featured: true
   },
@@ -141,7 +141,7 @@ export const projects: Project[] = [
     techStack: ['React', 'Tailwind CSS', 'Python', 'FastAPI', 'MongoDB Atlas'],
     status: 'ongoing',
     category: 'Trading Platform',
-    image: '/logo.jpg',
+    image: '/images/logo.jpg',
     featured: true
   },
   
@@ -152,7 +152,7 @@ export const projects: Project[] = [
     techStack: ['React', 'Node.js', 'MongoDB Atlas', 'Express', 'Stripe/Razorpay'],
     status: 'planned',
     category: 'Web Application',
-    image: '/logo.jpg',
+    image: '/images/logo.jpg',
     featured: false
   },
   {
@@ -162,7 +162,7 @@ export const projects: Project[] = [
     techStack: ['NextJS', 'Tailwind CSS', 'MongoDb Atlas', 'Stripe', 'React Query'],
     status: 'ongoing',
     category: 'Web Application',
-    image: '/logo.jpg',
+    image: '/images/logo.jpg',
     demoUrl: 'https://rudraksh-essence-dev.onrender.com',
     featured: false
   }
