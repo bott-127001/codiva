@@ -138,7 +138,16 @@ function ServiceCard({ service }: { service: SubscriptionService }) {
             {service.coreConcepts.slice(0, 3).map((concept, idx) => (
               <div key={idx} className="flex items-start gap-2 text-xs text-foreground/90">
                 <CheckCircle2 className="size-3.5 text-emerald-400 shrink-0 mt-0.5" />
-                <span><strong className="text-foreground">{concept.title}:</strong> {concept.description.split('.')[0]}.</span>
+                <span>
+                  {concept.title ? (
+                    <>
+                      <strong className="text-foreground">{concept.title}:</strong>{" "}
+                      {concept.description.split('.')[0]}.
+                    </>
+                  ) : (
+                    concept.description
+                  )}
+                </span>
               </div>
             ))}
           </div>
@@ -184,9 +193,11 @@ function ServiceCard({ service }: { service: SubscriptionService }) {
                     </h5>
                     {service.coreConcepts.map((concept, idx) => (
                       <div key={idx} className="p-3 rounded-xl bg-surface-2/40 border border-border/40 text-xs">
-                        <div className="font-semibold text-foreground mb-1">
-                          {concept.title}
-                        </div>
+                        {concept.title && (
+                          <div className="font-semibold text-foreground mb-1">
+                            {concept.title}
+                          </div>
+                        )}
                         <p className="text-[11px] text-muted-foreground leading-relaxed">
                           {concept.description}
                         </p>

@@ -27,7 +27,7 @@ export interface Project {
 }
 
 export interface ServiceFeature {
-  title: string;
+  title?: string;
   description: string;
 }
 
@@ -132,23 +132,23 @@ export const subscriptionServices: SubscriptionService[] = [
     id: 'rvolx',
     name: 'RVOLX',
     tagline: 'Institutional Intraday Quantitative Signals Platform',
-    whatItIs: 'A multi-tenant quantitative trading signals SaaS for NSE NIFTY 200 cash equities, designed to strip emotion out of the volatile 09:15–09:30 AM IST market opening.',
-    targetAudience: 'NSE NIFTY 200 Cash & Intraday Traders',
+    whatItIs: 'A leveraged trading signals platform for NSE Nifty 50 cash equities, designed to strip emotion out of the volatile market opening.',
+    targetAudience: 'NSE NIFTY 50 Cash & Intraday Traders',
     badge: 'Quantitative Intraday SaaS',
     status: 'active',
-    pricingModel: 'Multi-Tenant Subscription',
+    pricingModel: 'Leveraged Subscription',
     coreConcepts: [
       {
-        title: 'Time-Segmented RVOL',
-        description: 'Benchmarks opening 5-minute volume strictly against the historical moving average of the exact same time interval in prior sessions.'
+        title: '',
+        description: 'Math concepts to rule the emotions out for identifying trades.'
       },
       {
-        title: 'Strict Institutional Filters',
-        description: 'Evaluates liquidity surges (RVOL ≥ 2.5×), 14-period normalized ATR volatility corridors, mandatory ≥ 1:2 Risk-to-Reward parameters, and executes a mandatory 03:15 PM EOD square-off.'
+        title: '',
+        description: 'Strict filters to get the best stocks for the day.'
       },
       {
-        title: 'Capital Preservation (NO_TRADE Verdicts)',
-        description: 'If market conditions fail institutional filters, the system broadcasts a NO_TRADE verdict to protect trader capital and prevent emotional over-trading.'
+        title: '',
+        description: 'No need to sit the whole day watching charts—just get alerts on WhatsApp.'
       }
     ],
     architectureDetails: [
