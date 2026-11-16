@@ -1,16 +1,16 @@
 "use client";
 
 import { motion } from 'framer-motion';
-import { Button } from '@/components/ui/button';
-import { Separator } from '@/components/ui/separator';
-import { Heart, Github, Linkedin, Mail, ArrowUp, Instagram, Facebook, Twitter } from 'lucide-react';
+import { ArrowUp, Instagram, Facebook, Twitter, Linkedin, Heart } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
+import { GradientText } from '@/components/landing/Bits/GradientText';
 
 const quickLinks = [
   { name: 'Home', href: '#hero' },
-  { name: 'Team', href: '#team' },
-  { name: 'Projects', href: '#projects' },
+  { name: 'Services', href: '#services' },
+  { name: 'Clients', href: '#projects' },
   { name: 'Designs', href: '/portfolio' },
+  { name: 'Team', href: '#team' },
   { name: 'Contact', href: '#contact' },
 ];
 
@@ -25,7 +25,6 @@ export function Footer() {
   const { toast } = useToast();
   
   const handleNavClick = (href: string) => {
-    console.log('Footer navigation to:', href);
     if (href.startsWith('#')) {
       const element = document.querySelector(href);
       if (element) {
@@ -43,146 +42,98 @@ export function Footer() {
       handleNavClick(social.href);
     } else {
       toast({
-        title: 'Yet to open',
-        description: `${social.name} is not available yet.`,
-        variant: 'default',
+        title: 'Coming Soon',
+        description: `${social.name} channel will be live soon.`,
       });
     }
   };
 
   const scrollToTop = () => {
-    console.log('Scrolling to top');
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   return (
-    <footer className="bg-background border-t border-border">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Main Footer Content */}
-        <div className="py-12 lg:py-16">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
-            {/* Brand Section */}
-            <div className="lg:col-span-2">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6 }}
-              >
-                <h3 className="text-3xl font-bold gradient-text mb-4">Codiva</h3>
-                <p className="text-muted-foreground mb-6 max-w-md leading-relaxed">
-                  A startup of passionate full-stack developers and digital marketers 
-                  creating scalable, modern web solutions that drive business growth.
-                </p>
-                <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                  <span>Made with</span>
-                  <Heart className="h-4 w-4 text-red-500 fill-current" />
-                  <span>by the Codiva team</span>
-                </div>
-              </motion.div>
+    <footer className="relative z-10 border-t border-border/60 bg-surface-1/20 backdrop-blur-xl">
+      <div className="max-w-7xl mx-auto px-6 py-16">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-12 mb-12">
+          {/* Brand info */}
+          <div className="md:col-span-6 space-y-4">
+            <h3 className="text-3xl font-bold font-display tracking-tight">
+              <GradientText>Codiva</GradientText>
+            </h3>
+            <p className="text-sm text-muted-foreground max-w-sm leading-relaxed">
+              Full-stack software engineers and UI architects building fast, engaging, and scalable modern web solutions.
+            </p>
+            <div className="flex items-center gap-2 text-xs text-muted-foreground pt-2">
+              <span>Code Driven by Vision</span>
+              <span>•</span>
+              <span className="flex items-center gap-1">
+                Crafted with <Heart className="size-3 text-red-500 fill-current" /> by the Founders
+              </span>
             </div>
+          </div>
 
-            {/* Quick Links */}
-            <div>
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.1 }}
-              >
-                <h4 className="font-semibold text-foreground mb-4">Quick Links</h4>
-                <nav className="space-y-3">
-                  {quickLinks.map((link) => (
-                    <motion.button
-                      key={link.name}
-                      onClick={() => handleNavClick(link.href)}
-                      className="block text-muted-foreground hover:text-codiva-blue transition-colors duration-200 text-left"
-                      whileHover={{ x: 4 }}
-                    >
-                      {link.name}
-                    </motion.button>
-                  ))}
-                </nav>
-              </motion.div>
-            </div>
-
-            {/* Connect */}
-            <div>
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-              >
-                <h4 className="font-semibold text-foreground mb-4">Connect</h4>
-                <div className="space-y-3">
-                  {socialLinks.map((social) => {
-                    const Icon = social.icon;
-                    if (social.enabled) {
-                      return (
-                        <motion.button
-                          key={social.name}
-                          onClick={() => handleSocialClick(social)}
-                          className="flex items-center gap-3 transition-colors duration-200 group text-muted-foreground hover:text-codiva-blue"
-                          whileHover={{ x: 4 }}
-                        >
-                          <Icon className="h-4 w-4 transition-transform group-hover:scale-110" />
-                          <span>{social.name}</span>
-                        </motion.button>
-                      );
-                    } else {
-                      return (
-                        <div
-                          key={social.name}
-                          className="flex items-center gap-3 text-muted-foreground/50 cursor-not-allowed select-none opacity-60 pointer-events-none"
-                        >
-                          <Icon className="h-4 w-4" />
-                          <span>{social.name}</span>
-                        </div>
-                      );
-                    }
-                  })}
-                </div>
-                
-                {/* Back to Top Button */}
-                <motion.div className="mt-6">
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    onClick={scrollToTop}
-                    className="border-codiva-blue/20 text-codiva-blue hover:bg-codiva-blue hover:text-white transition-all duration-300"
+          {/* Quick Links */}
+          <div className="md:col-span-3">
+            <h4 className="text-xs font-mono uppercase tracking-widest text-foreground/90 mb-4">
+              Navigation
+            </h4>
+            <ul className="space-y-2.5">
+              {quickLinks.map((link) => (
+                <li key={link.name}>
+                  <button
+                    onClick={() => handleNavClick(link.href)}
+                    className="text-sm text-muted-foreground hover:text-brand-accent transition-colors duration-200"
                   >
-                    <ArrowUp className="h-4 w-4 mr-2" />
-                    Back to Top
-                  </Button>
-                </motion.div>
-              </motion.div>
+                    {link.name}
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Socials & Back to Top */}
+          <div className="md:col-span-3 flex flex-col justify-between">
+            <div>
+              <h4 className="text-xs font-mono uppercase tracking-widest text-foreground/90 mb-4">
+                Connect
+              </h4>
+              <div className="flex flex-wrap gap-2">
+                {socialLinks.map((social) => {
+                  const Icon = social.icon;
+                  return (
+                    <button
+                      key={social.name}
+                      onClick={() => handleSocialClick(social)}
+                      className={`icon-link ${!social.enabled ? 'opacity-40 cursor-not-allowed' : ''}`}
+                      title={social.name}
+                    >
+                      <Icon className="size-4" />
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+
+            <div className="pt-6">
+              <button
+                onClick={scrollToTop}
+                className="btn-ghost-bit text-xs py-2 px-3.5 hover:border-brand/40"
+              >
+                <ArrowUp className="size-3.5 mr-1" /> Back to Top
+              </button>
             </div>
           </div>
         </div>
 
-        <Separator />
-
-        {/* Bottom Footer */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          className="py-6 flex flex-col sm:flex-row justify-between items-center gap-4"
-        >
-          <p className="text-sm text-muted-foreground">
-            © {new Date().getFullYear()} Codiva. All rights reserved.
+        {/* Bottom bar */}
+        <div className="pt-8 border-t border-border/40 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-muted-foreground">
+          <p>© {new Date().getFullYear()} Codiva. All rights reserved.</p>
+          <p className="tracking-[0.12em] uppercase font-mono text-[11px]">
+            Next.js · TailwindCSS · Framer Motion
           </p>
-          <div className="flex items-center gap-6 text-sm text-muted-foreground">
-            <span>Built with Next.js & Tailwind CSS</span>
-            <span className="hidden sm:inline">•</span>
-            <span>Deployed on Netlify</span>
-          </div>
-        </motion.div>
+        </div>
       </div>
     </footer>
   );
 }
-
-console.log('Footer component loaded');

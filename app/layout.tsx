@@ -47,11 +47,11 @@ export default function RootLayout({
       <head>
         <link rel="icon" href="/images/logo.jpg" type="image/jpeg" />
       </head>
-      <body className={`${inter.variable} ${spaceGrotesk.variable} ${dmSans.variable} antialiased`}>
+      <body className={`${inter.variable} ${spaceGrotesk.variable} ${dmSans.variable} antialiased landing-page-theme bg-background text-foreground`}>
         <ThemeProvider
           attribute="class"
-          defaultTheme="system"
-          enableSystem
+          defaultTheme="dark"
+          forcedTheme="dark"
           disableTransitionOnChange
         >
           {children}

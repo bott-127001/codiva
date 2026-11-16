@@ -1,48 +1,38 @@
 "use client";
 
-import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
-import { Label } from '@/components/ui/label';
-import { Mail, MessageSquare, Send, CheckCircle, Github, Linkedin, Twitter, Facebook, Instagram } from 'lucide-react';
+import { Mail, MessageSquare, Send, CheckCircle, Sparkles, Instagram, Twitter, Facebook, Linkedin, ArrowUpRight } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
-
-interface ContactForm {
-  name: string;
-  email: string;
-  message: string;
-}
+import { SpotlightCard } from '@/components/landing/Bits/SpotlightCard';
+import { GradientText } from '@/components/landing/Bits/GradientText';
 
 const socialLinks = [
   {
     name: 'Instagram',
     url: 'https://www.instagram.com/codiva_labs/',
     icon: Instagram,
-    description: '@codiva_labs',
+    handle: '@codiva_labs',
     enabled: true
   },
   {
     name: 'Twitter',
     url: 'https://twitter.com/codiva_tech',
     icon: Twitter,
-    description: '@codiva_tech',
+    handle: '@codiva_tech',
     enabled: false
   },
   {
     name: 'Facebook',
     url: 'https://facebook.com/codiva.tech',
     icon: Facebook,
-    description: 'codiva.tech',
+    handle: 'codiva.tech',
     enabled: false
   },
   {
     name: 'LinkedIn',
     url: 'https://linkedin.com/company/codiva',
     icon: Linkedin,
-    description: 'Yet to reach',
+    handle: 'Codiva',
     enabled: false
   }
 ];
@@ -51,202 +41,211 @@ export function ContactSection() {
   const { toast } = useToast();
 
   return (
-    <section id="contact" className="section-padding bg-muted/30">
-      <div className="container mx-auto">
+    <section id="contact" className="section-padding relative z-10">
+      <div className="max-w-6xl mx-auto px-6">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 25 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 gradient-text">
-            Get In Touch
+          <div className="inline-flex items-center gap-2 eyebrow mb-4">
+            <Sparkles className="size-3.5 text-brand-accent" />
+            <span>Collaboration</span>
+          </div>
+
+          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold font-display tracking-tight mb-4">
+            <GradientText>Let's Build Together</GradientText>
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto text-balance">
-            Ready to start your next project? Let's discuss how we can help bring your vision to life.
+          <p className="text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto text-balance">
+            Have a project in mind or looking for a long-term technology partner? Reach out directly.
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 max-w-5xl mx-auto">
           {/* Contact Form */}
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
+            initial={{ opacity: 0, x: -25 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="lg:col-span-7"
+          >
+            <SpotlightCard className="p-8 rounded-3xl bg-surface-1/40 backdrop-blur-xl border border-border/60">
+              <div className="flex items-center gap-3 mb-6">
+                <span className="p-2 rounded-xl bg-brand/15 text-brand-accent border border-brand/20">
+                  <MessageSquare className="size-5" />
+                </span>
+                <div>
+                  <h3 className="text-xl font-bold font-display text-foreground">
+                    Send a Message
+                  </h3>
+                  <p className="text-xs text-muted-foreground">
+                    We typically reply within 24 hours
+                  </p>
+                </div>
+              </div>
+
+              <form
+                action="https://formspree.io/f/mzzvejnk"
+                method="POST"
+                className="space-y-4"
+              >
+                <div>
+                  <label htmlFor="name" className="block text-xs font-mono uppercase tracking-wider text-muted-foreground mb-1.5">
+                    Your Name
+                  </label>
+                  <input
+                    id="name"
+                    name="name"
+                    placeholder="e.g. John Doe"
+                    required
+                    className="w-full px-4 py-3 rounded-xl bg-surface-2/60 border border-border/60 text-foreground placeholder:text-muted-foreground/60 focus:outline-none focus:border-brand transition-colors text-sm"
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="email" className="block text-xs font-mono uppercase tracking-wider text-muted-foreground mb-1.5">
+                    Email Address
+                  </label>
+                  <input
+                    id="email"
+                    name="email"
+                    type="email"
+                    placeholder="john@example.com"
+                    required
+                    className="w-full px-4 py-3 rounded-xl bg-surface-2/60 border border-border/60 text-foreground placeholder:text-muted-foreground/60 focus:outline-none focus:border-brand transition-colors text-sm"
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="service" className="block text-xs font-mono uppercase tracking-wider text-muted-foreground mb-1.5">
+                    Inquiry / Subscription Interest
+                  </label>
+                  <select
+                    id="service"
+                    name="service"
+                    defaultValue="TurfFlow"
+                    className="w-full px-4 py-3 rounded-xl bg-surface-2/60 border border-border/60 text-foreground focus:outline-none focus:border-brand transition-colors text-sm"
+                  >
+                    <option value="TurfFlow" className="bg-surface-1 text-foreground">TurfFlow – Turf Management SaaS</option>
+                    <option value="Rvolx" className="bg-surface-1 text-foreground">Rvolx – Trading Signals Platform</option>
+                    <option value="Aladin" className="bg-surface-1 text-foreground">Aladin – Forex Strategy Indicator (Waitlist)</option>
+                    <option value="Prosperia" className="bg-surface-1 text-foreground">Prosperia – Real Estate AI Agent</option>
+                    <option value="Custom Development" className="bg-surface-1 text-foreground">Custom Web / Platform Engineering</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label htmlFor="message" className="block text-xs font-mono uppercase tracking-wider text-muted-foreground mb-1.5">
+                    Project / Subscription Requirements
+                  </label>
+                  <textarea
+                    id="message"
+                    name="message"
+                    placeholder="Tell us about your business, timeline, goals, or the specific service you are interested in..."
+                    required
+                    rows={4}
+                    className="w-full px-4 py-3 rounded-xl bg-surface-2/60 border border-border/60 text-foreground placeholder:text-muted-foreground/60 focus:outline-none focus:border-brand transition-colors text-sm resize-none"
+                  />
+                </div>
+
+                {/* Anti-spam gotcha */}
+                <input type="text" name="_gotcha" style={{ display: 'none' }} />
+
+                <button
+                  type="submit"
+                  className="btn-bit w-full justify-center text-sm py-3.5 mt-2"
+                >
+                  <Send className="size-4" /> Send Inquiry
+                </button>
+              </form>
+            </SpotlightCard>
+          </motion.div>
+
+          {/* Direct Details & Social Links */}
+          <motion.div
+            initial={{ opacity: 0, x: 25 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
+            className="lg:col-span-5 space-y-6 flex flex-col justify-between"
           >
-            <Card className="glass-card border-0">
-              <CardHeader>
-                <CardTitle className="flex items-center gap-3 text-2xl">
-                  <MessageSquare className="h-6 w-6 text-codiva-blue" />
-                  Send us a message
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <form
-                  action="https://formspree.io/f/mzzvejnk"
-                  method="POST"
-                  className="space-y-6"
-                >
-                  <div className="space-y-2">
-                    <Label htmlFor="name" className="text-sm font-medium">
-                      Your Name
-                    </Label>
-                    <Input
-                      id="name"
-                      name="name"
-                      placeholder="Enter your full name"
-                      required
-                      className="h-12"
-                    />
-                  </div>
-
-                  <div className="space-y-2">
-                    <Label htmlFor="email" className="text-sm font-medium">
-                      Email Address
-                    </Label>
-                    <Input
-                      id="email"
-                      name="email"
-                      type="email"
-                      placeholder="Enter your email address"
-                      required
-                      className="h-12"
-                    />
-                  </div>
-
-                  <div className="space-y-2">
-                    <Label htmlFor="message" className="text-sm font-medium">
-                      Message
-                    </Label>
-                    <Textarea
-                      id="message"
-                      name="message"
-                      placeholder="Tell us about your project, requirements, or any questions you have..."
-                      required
-                      rows={6}
-                      className="resize-none"
-                    />
-                  </div>
-
-                  {/* Spam protection */}
-                  <input type="text" name="_gotcha" style={{ display: 'none' }} />
-
-                  <Button
-                    type="submit"
-                    size="lg"
-                    className="w-full h-12 bg-codiva-blue hover:bg-codiva-blue/90 text-white font-semibold transition-all duration-300"
-                  >
-                    <Send className="h-5 w-5 mr-2" />
-                    Send Message
-                  </Button>
-                </form>
-              </CardContent>
-            </Card>
-          </motion.div>
-
-          {/* Contact Info & Social Links */}
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="space-y-8"
-          >
-            {/* Direct Contact */}
-            <Card className="glass-card border-0">
-              <CardHeader>
-                <CardTitle className="flex items-center gap-3 text-2xl">
-                  <Mail className="h-6 w-6 text-codiva-purple" />
-                  Direct Contact
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-4">
+            {/* Email Contact Card */}
+            <SpotlightCard className="p-6 rounded-3xl bg-surface-1/40 backdrop-blur-xl border border-border/60">
+              <div className="flex items-center gap-3 mb-4">
+                <span className="p-2 rounded-xl bg-brand-2/15 text-brand-2 border border-brand-2/20">
+                  <Mail className="size-5" />
+                </span>
                 <div>
-                  <h4 className="font-semibold mb-2">Email Us</h4>
-                  <p className="text-muted-foreground">
-                    For business inquiries and partnerships
-                  </p>
-                  <Button
-                    variant="link"
-                    className="p-0 h-auto text-codiva-blue hover:text-codiva-blue/80"
-                    onClick={() => window.open('mailto:hello@codiva.tech', '_blank')}
-                  >
-                    itscodivalabs@gmail.com
-                  </Button>
-                </div>
-                
-                <div>
-                  <h4 className="font-semibold mb-2">Response Time</h4>
-                  <p className="text-muted-foreground">
-                    We typically respond within 24 hours on business days
+                  <h4 className="text-base font-bold font-display text-foreground">
+                    Direct Email
+                  </h4>
+                  <p className="text-xs text-muted-foreground">
+                    Business inquiries & partnerships
                   </p>
                 </div>
-              </CardContent>
-            </Card>
+              </div>
+              <a
+                href="mailto:itscodivalabs@gmail.com"
+                className="inline-flex items-center gap-2 text-sm text-brand-accent hover:underline font-mono"
+              >
+                itscodivalabs@gmail.com <ArrowUpRight className="size-3.5" />
+              </a>
+            </SpotlightCard>
 
-            {/* Social Links */}
-            <Card className="glass-card border-0">
-              <CardHeader>
-                <CardTitle className="text-2xl">Follow Us</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="grid grid-cols-2 gap-4">
-                  {socialLinks.map((social) => {
-                    const Icon = social.icon;
-                    return (
-                      <motion.button
-                        key={social.name}
-                        onClick={() => {
-                          if (social.enabled) {
-                            window.open(social.url, '_blank');
-                          } else {
-                            toast({
-                              title: 'Yet to open',
-                              description: `${social.name} is not available yet.`,
-                              variant: 'default',
-                            });
-                          }
-                        }}
-                        className={`flex items-center gap-3 p-4 rounded-lg bg-background/50 transition-all duration-200 text-left group ${!social.enabled ? 'opacity-60 cursor-not-allowed' : 'hover:bg-codiva-blue/10 hover:text-codiva-blue'}`}
-                        whileHover={social.enabled ? { scale: 1.02 } : {}}
-                        whileTap={social.enabled ? { scale: 0.98 } : {}}
-                        disabled={!social.enabled}
-                      >
-                        <Icon className="h-5 w-5 flex-shrink-0 group-hover:scale-110 transition-transform" />
-                        <div className="min-w-0">
-                          <p className="font-medium text-sm">{social.name}</p>
-                          <p className="text-xs text-muted-foreground truncate">
-                            {social.description}
-                          </p>
-                        </div>
-                      </motion.button>
-                    );
-                  })}
-                </div>
-              </CardContent>
-            </Card>
+            {/* Social Channels */}
+            <SpotlightCard className="p-6 rounded-3xl bg-surface-1/40 backdrop-blur-xl border border-border/60">
+              <h4 className="text-xs font-mono uppercase tracking-widest text-muted-foreground mb-4">
+                Social Channels
+              </h4>
+              <div className="grid grid-cols-2 gap-3">
+                {socialLinks.map((social) => {
+                  const Icon = social.icon;
+                  return (
+                    <button
+                      key={social.name}
+                      onClick={() => {
+                        if (social.enabled) {
+                          window.open(social.url, '_blank', 'noopener,noreferrer');
+                        } else {
+                          toast({
+                            title: 'Coming Soon',
+                            description: `${social.name} profile will be live shortly.`,
+                          });
+                        }
+                      }}
+                      className={`flex items-center gap-2.5 p-3 rounded-xl border border-border/50 text-left transition-all ${
+                        social.enabled
+                          ? 'bg-surface-2/60 hover:border-brand/40 text-foreground hover:bg-surface-2'
+                          : 'bg-surface-2/20 text-muted-foreground/60 cursor-not-allowed opacity-60'
+                      }`}
+                    >
+                      <Icon className="size-4 shrink-0 text-brand-accent" />
+                      <div className="min-w-0">
+                        <p className="text-xs font-medium truncate">{social.name}</p>
+                        <p className="text-[10px] text-muted-foreground truncate">{social.handle}</p>
+                      </div>
+                    </button>
+                  );
+                })}
+              </div>
+            </SpotlightCard>
 
-            {/* Call to Action */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.6 }}
-              className="text-center p-6 rounded-lg bg-gradient-to-r from-codiva-blue/10 via-codiva-purple/10 to-codiva-green/10 border border-codiva-blue/20"
-            >
-              <CheckCircle className="h-12 w-12 text-codiva-green mx-auto mb-4" />
-              <h3 className="text-lg font-semibold mb-2">Ready to Start?</h3>
-              <p className="text-muted-foreground text-sm">
-                Let's discuss your project and turn your ideas into reality
+            {/* Ready to launch note */}
+            <div className="p-6 rounded-3xl bg-gradient-to-br from-brand/10 to-brand-2/10 border border-brand/20 backdrop-blur-md text-center">
+              <CheckCircle className="size-8 text-brand-accent mx-auto mb-2" />
+              <h4 className="text-base font-bold font-display text-foreground mb-1">
+                Ready to Ship?
+              </h4>
+              <p className="text-xs text-muted-foreground">
+                From concept to high-speed production code, we turn your ideas into reality.
               </p>
-            </motion.div>
+            </div>
           </motion.div>
         </div>
       </div>
     </section>
   );
 }
-
-console.log('Contact section component loaded');

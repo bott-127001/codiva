@@ -1,137 +1,102 @@
 "use client";
 
 import { motion } from 'framer-motion';
-import { Button } from '@/components/ui/button';
-import { ArrowDown, Code, Zap, Users } from 'lucide-react';
+import { ArrowUpRight, Sparkles, Code2, Cpu, Rocket } from 'lucide-react';
+import { GradientText } from '@/components/landing/Bits/GradientText';
+import { SplitText } from '@/components/landing/Bits/SplitText';
+import { MagneticLink } from '@/components/landing/Bits/MagneticButton';
+import { Marquee } from '@/components/landing/Bits/Marquee';
 
 export function HeroSection() {
-  const handleScrollToProjects = () => {
-    console.log('Scrolling to projects section');
-    document.querySelector('#projects')?.scrollIntoView({ behavior: 'smooth' });
-  };
-
-  const handleScrollToContact = () => {
-    console.log('Scrolling to contact section');
-    document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' });
-  };
-
   return (
-    <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Animated Background */}
-      <div className="absolute inset-0 bg-hero-gradient opacity-10 dark:opacity-20"></div>
-      <div className="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-background/50"></div>
-      
-      {/* Floating shapes */}
-      <motion.div
-        className="absolute top-20 left-10 w-20 h-20 bg-codiva-blue/20 rounded-full blur-xl"
-        animate={{
-          y: [0, -20, 0],
-          x: [0, 10, 0],
-        }}
-        transition={{
-          duration: 6,
-          repeat: Infinity,
-          ease: "easeInOut"
-        }}
-      />
-      <motion.div
-        className="absolute bottom-20 right-10 w-32 h-32 bg-codiva-purple/20 rounded-full blur-xl"
-        animate={{
-          y: [0, 20, 0],
-          x: [0, -15, 0],
-        }}
-        transition={{
-          duration: 8,
-          repeat: Infinity,
-          ease: "easeInOut"
-        }}
-      />
-
-      <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <section id="hero" className="relative pt-32 pb-20 sm:pt-40 sm:pb-28 overflow-hidden">
+      <div className="relative z-10 max-w-6xl mx-auto px-6 text-center">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.6 }}
+          className="inline-flex items-center gap-2 eyebrow mb-8"
         >
-          {/* Logo/Brand */}
-          <motion.h1
-            className="text-6xl sm:text-7xl lg:text-8xl xl:text-9xl font-bold mb-6 gradient-text"
-            initial={{ scale: 0.8 }}
-            animate={{ scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-          >
-            Codiva
-          </motion.h1>
-
-          {/* Tagline */}
-          <motion.p
-            className="text-xl sm:text-2xl lg:text-3xl font-semibold text-foreground/90 mb-8 text-balance"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-          >
-            Code Driven by Vision
-          </motion.p>
-
-          {/* Description */}
-          <motion.p
-            className="text-lg sm:text-xl text-muted-foreground max-w-3xl mx-auto mb-12 leading-relaxed text-balance"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-          >
-            A startup of passionate full-stack developers and digital marketers creating 
-            scalable, modern web solutions that drive business growth and user engagement.
-          </motion.p>
-
-          {/* Feature highlights */}
-          <motion.div
-            className="flex flex-col sm:flex-row items-center justify-center gap-8 mb-12"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.8 }}
-          >
-            <div className="flex items-center gap-3 text-sm sm:text-base text-muted-foreground">
-              <Code className="h-5 w-5 text-codiva-blue" />
-              <span>Full-Stack Development</span>
-            </div>
-            <div className="flex items-center gap-3 text-sm sm:text-base text-muted-foreground">
-              <Zap className="h-5 w-5 text-codiva-purple" />
-              <span>Modern Technologies</span>
-            </div>
-            <div className="flex items-center gap-3 text-sm sm:text-base text-muted-foreground">
-              <Users className="h-5 w-5 text-codiva-green" />
-              <span>Expert Team</span>
-            </div>
-          </motion.div>
-
-          {/* CTA Buttons */}
-          <motion.div
-            className="flex flex-col sm:flex-row gap-4 justify-center items-center"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 1 }}
-          >
-            <Button
-              size="lg"
-              onClick={handleScrollToProjects}
-              className="bg-codiva-blue hover:bg-codiva-blue/90 text-white px-8 py-6 text-lg font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
-            >
-              View Our Work
-            </Button>
-            <Button
-              variant="outline"
-              size="lg"
-              onClick={handleScrollToContact}
-              className="border-2 border-codiva-purple text-codiva-purple hover:bg-codiva-purple hover:text-white px-8 py-6 text-lg font-semibold rounded-xl transition-all duration-300"
-            >
-              Get In Touch
-            </Button>
-          </motion.div>
+          <Sparkles className="size-3.5 text-brand-accent animate-pulse" />
+          <span>SaaS Incubator & Full-Stack Studio</span>
         </motion.div>
+
+        <h1 className="max-w-5xl mx-auto font-display text-5xl sm:text-7xl lg:text-8xl font-bold leading-[0.95] tracking-[-0.04em] mb-8">
+          <SplitText text="Code Driven by" />
+          <GradientText className="block mt-2">
+            <SplitText text="Vision." delay={0.25} />
+          </GradientText>
+        </h1>
+
+        <motion.p
+          className="max-w-2xl mx-auto text-lg sm:text-xl text-muted-foreground leading-relaxed mb-10 text-balance"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.7, delay: 0.5 }}
+        >
+          From high-performance client web platforms to specialized subscription services — we engineer vertical SaaS products, quantitative trading engines, and autonomous AI agents.
+        </motion.p>
+
+        {/* Action Buttons */}
+        <motion.div
+          className="flex flex-wrap items-center justify-center gap-4 mb-16"
+          initial={{ opacity: 0, y: 15 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.7 }}
+        >
+          <MagneticLink href="#services" className="btn-bit text-sm py-3 px-6 shadow-xl">
+            Explore Subscription Services <ArrowUpRight className="size-4" />
+          </MagneticLink>
+
+          <a href="#projects" className="btn-ghost-bit text-sm py-3 px-6 backdrop-blur-md">
+            View Client Sites
+          </a>
+
+          <a href="/portfolio" className="btn-ghost-bit text-sm py-3 px-6 backdrop-blur-md">
+            <Sparkles className="size-3.5 text-brand-accent" />
+            See Designs
+          </a>
+        </motion.div>
+
+        {/* Feature Highlights */}
+        <motion.div
+          className="flex flex-wrap items-center justify-center gap-6 sm:gap-10 text-xs sm:text-sm text-muted-foreground"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.8, delay: 0.9 }}
+        >
+          <div className="flex items-center gap-2">
+            <Code2 className="size-4 text-brand-accent" />
+            <span>Robust Full-Stack Architecture</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <Cpu className="size-4 text-brand" />
+            <span>Modern Next.js & React Core</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <Rocket className="size-4 text-brand-2" />
+            <span>Built for Speed & Conversion</span>
+          </div>
+        </motion.div>
+      </div>
+
+      {/* Tech Ticker Marquee */}
+      <div className="mt-16 relative z-10 border-y border-border/60 bg-surface-1/40 backdrop-blur-md">
+        <Marquee
+          items={[
+            "Next.js",
+            "TypeScript",
+            "TailwindCSS",
+            "React",
+            "Framer Motion",
+            "Node.js",
+            "MongoDB Atlas",
+            "Python",
+            "Figma UX/UI",
+            "FastAPI",
+          ]}
+        />
       </div>
     </section>
   );
 }
-
-console.log('Hero section component loaded');

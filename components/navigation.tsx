@@ -2,15 +2,17 @@
 
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
-import { Moon, Sun, Menu, X } from 'lucide-react';
-import { useTheme } from 'next-themes';
+import { Menu, X, ArrowUpRight, Sparkles } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { GradientText } from '@/components/landing/Bits/GradientText';
+import { MagneticLink } from '@/components/landing/Bits/MagneticButton';
 
 const navigationItems = [
   { name: 'Home', href: '#hero' },
+  { name: 'Services', href: '#services', badge: 'SaaS' },
+  { name: 'Clients', href: '#projects' },
+  { name: 'Designs', href: '/portfolio', badge: 'Live' },
   { name: 'Team', href: '#team' },
-  { name: 'Projects', href: '#projects' },
-  { name: 'Designs', href: '/portfolio' },
   { name: 'Contact', href: '#contact' },
 ];
 
@@ -18,7 +20,6 @@ export function Navigation() {
   const [mounted, setMounted] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const { theme, setTheme } = useTheme();
 
   useEffect(() => {
     setMounted(true);
@@ -32,7 +33,6 @@ export function Navigation() {
   }, []);
 
   const handleNavClick = (href: string) => {
-    console.log('Navigating to:', href);
     setIsMobileMenuOpen(false);
     
     if (href.startsWith('/')) {
@@ -52,15 +52,15 @@ export function Navigation() {
     <motion.nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled 
-          ? 'glass-card backdrop-blur-md' 
-          : 'bg-transparent'
+          ? 'backdrop-blur-xl bg-background/70 border-b border-border/60 py-3' 
+          : 'bg-transparent py-5'
       }`}
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.5 }}
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16 lg:h-20">
+        <div className="flex items-center justify-between h-12">
           {/* Logo */}
           <motion.div
             className="flex-shrink-0"
@@ -69,83 +69,93 @@ export function Navigation() {
           >
             <button
               onClick={() => handleNavClick('#hero')}
-              className="text-2xl lg:text-3xl font-bold gradient-text cursor-pointer"
+              className="text-2xl font-bold font-display tracking-tight cursor-pointer"
             >
-              Codiva
+              <GradientText>Codiva</GradientText>
             </button>
           </motion.div>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:block">
-            <div className="ml-10 flex items-baseline space-x-8">
-              {navigationItems.map((item) => (
-                <motion.button
-                  key={item.name}
-                  onClick={() => handleNavClick(item.href)}
-                  className="text-foreground/80 hover:text-foreground px-3 py-2 text-sm font-medium transition-colors duration-200"
-                  whileHover={{ y: -2 }}
-                  whileTap={{ y: 0 }}
-                >
-                  {item.name}
-                </motion.button>
-              ))}
-            </div>
+          <div className="hidden md:flex items-center space-x-1 lg:space-x-2 bg-surface-1/70 backdrop-blur-md px-4 py-1.5 rounded-full border border-border/60 shadow-lg">
+            {navigationItems.map((item) => (
+              <button
+                key={item.name}
+                onClick={() => handleNavClick(item.href)}
+                className={`relative px-3.5 py-1.5 text-xs lg:text-sm font-medium rounded-full transition-all duration-200 flex items-center gap-1.5 ${
+                  item.badge
+                    ? 'text-foreground font-semibold hover:text-brand-accent'
+                    : 'text-muted-foreground hover:text-foreground hover:bg-surface-2/60'
+                }`}
+              >
+                {item.name}
+                {item.badge && (
+                  <span className="inline-flex items-center gap-1 text-[10px] uppercase font-bold tracking-wider px-1.5 py-0.2 rounded-full bg-brand/20 text-brand-accent border border-brand/30">
+                    <Sparkles className="size-2.5" />
+                    {item.badge}
+                  </span>
+                )}
+              </button>
+            ))}
           </div>
 
-          {/* Right side items */}
-          <div className="flex items-center space-x-4">
-            {/* Theme Toggle */}
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-              className="h-9 w-9"
-            >
-              {theme === 'dark' ? (
-                <Sun className="h-4 w-4" />
-              ) : (
-                <Moon className="h-4 w-4" />
-              )}
-            </Button>
+          {/* Right side CTA */}
+          <div className="hidden md:flex items-center space-x-3">
+            <MagneticLink href="#contact" className="btn-bit text-xs py-2 px-4.5">
+              Start a project <ArrowUpRight className="size-3.5" />
+            </MagneticLink>
+          </div>
 
-            {/* Mobile menu button */}
+          {/* Mobile menu button */}
+          <div className="flex md:hidden items-center">
             <Button
               variant="ghost"
               size="icon"
-              className="md:hidden h-9 w-9"
+              className="h-9 w-9 text-foreground"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             >
               {isMobileMenuOpen ? (
-                <X className="h-4 w-4" />
+                <X className="h-5 w-5" />
               ) : (
-                <Menu className="h-4 w-4" />
+                <Menu className="h-5 w-5" />
               )}
             </Button>
           </div>
         </div>
 
-        {/* Mobile Navigation */}
+        {/* Mobile Navigation Drawer */}
         <AnimatePresence>
           {isMobileMenuOpen && (
             <motion.div
-              className="md:hidden"
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: 'auto' }}
-              exit={{ opacity: 0, height: 0 }}
-              transition={{ duration: 0.3 }}
+              className="md:hidden mt-3"
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.2 }}
             >
-              <div className="px-2 pt-2 pb-3 space-y-1 glass-card rounded-lg mt-2">
+              <div className="p-4 space-y-2 rounded-2xl bg-surface-1/95 backdrop-blur-xl border border-border shadow-2xl">
                 {navigationItems.map((item) => (
-                  <motion.button
+                  <button
                     key={item.name}
                     onClick={() => handleNavClick(item.href)}
-                    className="text-foreground/80 hover:text-foreground block px-3 py-2 text-base font-medium w-full text-left transition-colors duration-200"
-                    whileHover={{ x: 10 }}
-                    whileTap={{ x: 0 }}
+                    className="flex items-center justify-between w-full px-4 py-3 text-sm font-medium text-foreground/80 hover:text-foreground hover:bg-surface-2/70 rounded-xl transition-colors"
                   >
-                    {item.name}
-                  </motion.button>
+                    <span>{item.name}</span>
+                    {item.badge && (
+                      <span className="text-[10px] uppercase font-bold px-2 py-0.5 rounded-full bg-brand/20 text-brand-accent border border-brand/30">
+                        {item.badge}
+                      </span>
+                    )}
+                  </button>
                 ))}
+                <div className="pt-2">
+                  <a
+                    href="#contact"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="btn-bit w-full justify-center text-xs py-3"
+                  >
+                    Start a project <ArrowUpRight className="size-3.5" />
+                  </a>
+                </div>
               </div>
             </motion.div>
           )}
@@ -154,5 +164,3 @@ export function Navigation() {
     </motion.nav>
   );
 }
-
-console.log('Navigation component loaded');
